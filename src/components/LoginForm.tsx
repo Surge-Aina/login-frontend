@@ -24,7 +24,7 @@ export default function LoginForm() {
       onSubmit={handleSubmit}
       className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-md mx-auto"
     >
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
+      <h2 className="text-2xl font-bold mb-4 text-blue-600">Login</h2>
 
     {/* Email Field */}
       <div className="mb-4">
@@ -56,7 +56,7 @@ export default function LoginForm() {
         <select
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          className="w-full border rounded px-3 py-2"
+          className="text-black w-full border rounded px-3 py-2"
         >
           <option value="admin">Admin</option>
           <option value="manager">Manager</option>
@@ -71,6 +71,13 @@ export default function LoginForm() {
       >
         Log In
       </button>
+      <p className="text-black text-sm mt-4 text-center">Don&apos;t have an account?{' '}
+  <a href="/signup" className="text-blue-600 underline hover:text-blue-800">
+    Sign up here
+  </a>
+</p>
+
     </form>
+    
   );
 }
