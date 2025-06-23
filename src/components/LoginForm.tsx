@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { getDashboardPath } from '@/utils/roleRedirect';
+
 
 /**
  * Component: LoginForm
@@ -32,8 +34,9 @@ export default function LoginForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email && password) {
-      localStorage.setItem('user', JSON.stringify({ email, role }));
-      router.push('/dashboard');
+      const user = { email, role };
+      localStorage.setItem('user', JSON.stringify({ user }));
+      router.push(getDashboardPath(role));
     } else {
       alert('Please enter email and password');
     }
@@ -98,6 +101,12 @@ export default function LoginForm() {
         <a href="/signup" className="text-blue-600 underline hover:text-blue-800">
           Sign up here
         </a>
+        <a href={`${process.env.NEXT_PUBLIC_API_URL}/auth/google`}
+          className="block w-full text-center mt-4 bg-red-600 hover:bg-red-700 text-white py-2 rounded"
+        >
+          Continue with Google
+        </a>
+
       </p>
     </form>
   );
