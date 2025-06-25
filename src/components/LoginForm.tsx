@@ -2,15 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getDashboardPath } from '@/utils/roleRedirect';
-
+import { getDashboardPath } from '@/utils/roleRedirect'; // Assuming you have this file
+import { GoogleSignInButton } from './GoogleSignInButton'; // Make sure this path is correct
 
 /**
  * Component: LoginForm
  * Description:
  * - Renders a login form with email, password, and role selection.
- * - Validates inputs and stores user info in localStorage.
- * - Redirects to the dashboard upon successful login.
+ * - Integrates standard login with Google Sign-In.
  */
 export default function LoginForm() {
   // State: Stores email, password, and role input values
@@ -21,19 +20,13 @@ export default function LoginForm() {
 
   /**
    * Function: handleSubmit
-   * Parameters:
-   *   e (React.FormEvent): Form submission event
-   * Returns:
-   *   void
    * Description:
-   * - Prevents default form behavior.
-   * - If both email and password are provided, stores the user data in localStorage
-   *   and redirects to the dashboard.
-   * - Alerts the user if required fields are missing.
+   * - Handles the standard email/password form submission.
    */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email && password) {
+      // Your existing logic for email/password login
       const user = { email, role };
       localStorage.setItem('user', JSON.stringify({ user }));
       router.push(getDashboardPath(role));
@@ -91,22 +84,30 @@ export default function LoginForm() {
       {/* Submit Button */}
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
       >
         Log In
       </button>
+
+      <div className="mt-6 relative">
+          <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">Or</span>
+          </div>
+      </div>
+
+      {/* Google Sign-In Button */}
+      <div className="mt-6">
+        <GoogleSignInButton />
+      </div>
 
       <p className="text-black text-sm mt-4 text-center">
         Don&apos;t have an account?{' '}
         <a href="/signup" className="text-blue-600 underline hover:text-blue-800">
           Sign up here
         </a>
-        <a href={`${process.env.NEXT_PUBLIC_API_URL}/auth/google`}
-          className="block w-full text-center mt-4 bg-red-600 hover:bg-red-700 text-white py-2 rounded"
-        >
-          Continue with Google
-        </a>
-
       </p>
     </form>
   );
