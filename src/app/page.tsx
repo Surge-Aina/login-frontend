@@ -1,5 +1,11 @@
 import Link from 'next/link';
 
+/**
+ * Component: Home
+ * Description:
+ * - The main landing page of the application.
+ * - Provides a welcome message and a link to the login page.
+ */
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center">

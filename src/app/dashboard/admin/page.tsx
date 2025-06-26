@@ -3,15 +3,33 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Component: AdminPage
+ * Description:
+ * - Renders the main dashboard for an admin user.
+ * - Allows the admin to view and manage users, invitations, and their own profile.
+ */
 export default function AdminPage() {
   const router = useRouter();
   const [view, setView] = useState('all'); // To control which placeholder table is shown
 
+  /**
+   * Function: handleLogout
+   * Description:
+   * - Logs the user out by redirecting to the homepage.
+   * - In a real application, this would also clear authentication tokens.
+   */
   const handleLogout = () => {
     // In a real app, you'd clear auth tokens
     router.push('/');
   };
 
+  /**
+   * Function: handleDeleteProfile
+   * Description:
+   * - Prompts the user for confirmation before deleting their own profile.
+   * - If confirmed, it logs the user out.
+   */
   const handleDeleteProfile = () => {
       if (window.confirm('Are you sure you want to delete your own profile?')) {
           handleLogout();
@@ -75,7 +93,7 @@ export default function AdminPage() {
                     </div>
                 </div>
             </section>
-            
+
             {/* Section: User Lists */}
              <section className="bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4 text-gray-700">User Lists</h2>

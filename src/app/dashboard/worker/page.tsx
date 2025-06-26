@@ -3,13 +3,30 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Component: WorkerPage
+ * Description:
+ * - Renders the dashboard for a worker user.
+ * - Displays the worker's manager and provides an option to delete their profile.
+ */
 export default function WorkerPage() {
     const router = useRouter();
 
+    /**
+     * Function: handleLogout
+     * Description:
+     * - Logs the user out by redirecting to the homepage.
+     */
     const handleLogout = () => {
         router.push('/');
     };
     
+    /**
+     * Function: handleDeleteProfile
+     * Description:
+     * - Prompts the user for confirmation before deleting their profile.
+     * - If confirmed, it logs the user out.
+     */
     const handleDeleteProfile = () => {
         if (window.confirm('Are you sure you want to delete your profile?')) {
             handleLogout();

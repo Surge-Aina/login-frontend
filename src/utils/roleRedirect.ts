@@ -1,3 +1,13 @@
+/**
+ * Function: getDashboardPath
+ * Parameters:
+ * role (string): The user's role (e.g., 'Admin', 'Worker', 'Customer', 'Manager').
+ * Returns:
+ * string: The URL path to the corresponding dashboard.
+ * Description:
+ * Takes a user role as input and returns the appropriate dashboard path.
+ * If the role is not recognized, it redirects to the login page.
+ */
 export function getDashboardPath(role: string): string {
   switch (role) {
     case 'Admin':

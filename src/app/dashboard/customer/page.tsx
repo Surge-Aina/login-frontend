@@ -3,13 +3,30 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Component: CustomerPage
+ * Description:
+ * - Renders the dashboard for a customer user.
+ * - Displays a welcome message and a section for profile deletion.
+ */
 export default function CustomerPage() {
     const router = useRouter();
 
+    /**
+     * Function: handleLogout
+     * Description:
+     * - Logs the user out by redirecting to the homepage.
+     */
     const handleLogout = () => {
         router.push('/');
     };
 
+    /**
+     * Function: handleDeleteProfile
+     * Description:
+     * - Prompts the user for confirmation before deleting their profile.
+     * - If confirmed, it logs the user out.
+     */
     const handleDeleteProfile = () => {
         if (window.confirm('Are you sure you want to delete your profile?')) {
             handleLogout();

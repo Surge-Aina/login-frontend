@@ -3,14 +3,31 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Component: ManagerPage
+ * Description:
+ * - Renders the dashboard for a manager user.
+ * - Provides functionality to add new workers, view worker lists, and manage their own profile.
+ */
 export default function ManagerPage() {
     const router = useRouter();
     const [view, setView] = useState('my_workers');
 
+    /**
+     * Function: handleLogout
+     * Description:
+     * - Logs the user out by redirecting to the homepage.
+     */
     const handleLogout = () => {
         router.push('/');
     };
 
+    /**
+     * Function: handleDeleteProfile
+     * Description:
+     * - Prompts the user for confirmation before deleting their own profile.
+     * - If confirmed, it logs the user out.
+     */
     const handleDeleteProfile = () => {
         if (window.confirm('Are you sure you want to delete your own profile?')) {
             handleLogout();
